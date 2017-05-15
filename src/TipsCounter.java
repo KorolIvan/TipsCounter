@@ -7,46 +7,40 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 /**
- * Created by Dell Laptop on 05.08.2016.
+ * @author Ivan Korol on 05.08.2016.
  */
 public class TipsCounter {
     // создаем переменные для фрейма
-    JTextField textStaff;
-    JTextField textTips;
-    JButton button;
-    JLabel labStaff;
-    JLabel labTips;
-    JLabel labKitchen;
-    JLabel labNewStaff;
-    Choice boxNewStaff;
-    Choice boxKitchen;
-    BufferedReader reader;
+    private JTextField textStaff;
+    private JTextField textTips;
+    private Choice boxNewStaff;
+    private Choice boxKitchen;
 
-    public void go(){
+    private void go(){
         // создаем фрейс и панель с компонентами
         JFrame frame=new JFrame("tips Counter");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         JPanel panel=new JPanel();
-        Font f=new Font("",Font.CENTER_BASELINE,14);
+        Font f=new Font("", Font.BOLD,14);
         textStaff=new JTextField(15);
         textTips=new JTextField(15);
-        labStaff=new JLabel("Staff");
+        JLabel labStaff = new JLabel("Staff");
         labStaff.setHorizontalAlignment(SwingConstants.CENTER);
         labStaff.setFont(f);
-        labTips=new JLabel("Tips");
+        JLabel labTips = new JLabel("Tips");
         labTips.setHorizontalAlignment(SwingConstants.CENTER);
         labTips.setFont(f);
-        labKitchen=new JLabel("% for kitchen");
+        JLabel labKitchen = new JLabel("% for kitchen");
         labKitchen.setHorizontalAlignment(SwingConstants.CENTER);
         labKitchen.setFont(f);
-        button=new JButton("Count");
+        JButton button = new JButton("Count");
         button.addActionListener(new ButtonListener());
         boxKitchen=new Choice();
         boxKitchen.add("0");
         boxKitchen.add("10");
         boxKitchen.add("15");
         boxKitchen.add("20");
-        labNewStaff=new JLabel("New Staff");
+        JLabel labNewStaff = new JLabel("New Staff");
         labNewStaff.setHorizontalAlignment(SwingConstants.CENTER);
         labNewStaff.setFont(f);
         boxNewStaff=new Choice();
@@ -68,19 +62,19 @@ public class TipsCounter {
         panel.add(labNewStaff);
         panel.add(boxNewStaff);
         frame.getContentPane().add(BorderLayout.CENTER, panel);
-        frame.getContentPane().add(BorderLayout.SOUTH,button);
+        frame.getContentPane().add(BorderLayout.SOUTH, button);
         frame.setSize(400,200);
         frame.setLocation(500,300);
         frame.setResizable(false);
         frame.setVisible(true);
     }
-    public String Num() {
+    private String Num() {
         double tot;
         double chefs;
         double tip;
         String s = "Работайте усерднее!!! "; //будет выводится если все будет по нолям
         try {
-            reader = new BufferedReader(new InputStreamReader(System.in));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             //получаем текст с текстовых табличек
             String t1s = textStaff.getText();
             String t2t = textTips.getText();
@@ -120,7 +114,7 @@ public class TipsCounter {
                 if(nTips!=0){
                     staffTips = ((nTips / nStaff) * (StuffFull)) / nStaff;
                     newStaffTips = staffTips / 2;
-                    //начало циклв
+
                     for (int i=nTips; i>=(nTips-((staffTips*StuffFull)+(newStaffTips*nNewStaff))); i--) {
                         tip = nTips - ((staffTips * StuffFull) + (newStaffTips * nNewStaff));
                         staffTips += ((tip / nStaff) * StuffFull) / nStaff;
